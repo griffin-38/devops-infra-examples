@@ -7,3 +7,4 @@ The examples provided here demonstrate best practices and real-world scenarios f
 ### Table of Contents
 - [terra-ansible-aws](https://github.com/griffin-38/infra-examples/blob/master/terra-ansible-aws/READ.MD)
 - [web-reports-travis-docker](https://github.com/griffin-38/infra-examples/blob/master/web-reports-travis-docker/README.md)
+
