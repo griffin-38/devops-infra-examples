@@ -1,4 +1,4 @@
-# Automation Tests -  Web Reports - Jenkins and Docker
+# Web Reports - Jenkins and Docker
 Provides an easy and scalable way to store and visualize internal reports.
 
 ## Key Features
