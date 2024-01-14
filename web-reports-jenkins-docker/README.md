@@ -1,10 +1,11 @@
-# Automation Tests -  Web Reports - Jenkins and Docker
+# Web Reports - Jenkins and Docker
 Provides an easy and scalable way to store and visualize internal reports.
 
 ## Key Features
 
-- CI/CD Integration: Utilizes [Jenkins and Docker](https://www.jenkins.io/solutions/docker/) to seamlessly incorporate automated tests into our CI/CD pipeline.
-- Enhanced Team Efficiency: Accelerates team automation tasks by streamlining the testing process
+- Leveraging Jenkins and Docker in unison, it seamlessly integrates tests into our CI/CD pipeline, contributing to accelerated automation tasks.
+  * CI/CD Integration: Utilizes [Jenkins and Docker](https://www.jenkins.io/solutions/docker/) in conjunction with [Rancher for orchestration](https://www.rancher.com/), seamlessly incorporating automated tests into our CI/CD pipeline.
+  * Enhanced Team Efficiency: Accelerates team automation tasks by streamlining the testing process
 - OneLogin SSO for authentication
 - Based on [next.js](https://nextjs.org/) with [express server](https://expressjs.com/). 
 - Stores data in [mongoDB](https://www.mongodb.com/).
