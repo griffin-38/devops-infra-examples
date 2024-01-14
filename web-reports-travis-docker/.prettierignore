@@ -1,0 +1,4 @@
+.next
+coverage
+newrelic-browser-agent.js
+static/vendor

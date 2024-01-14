@@ -1,0 +1,92 @@
+withCredentials([string(credentialsId: 'NPM_TOKEN', variable: 'NPM_TOKEN'), string(credentialsId: 'CODECOV_WEB_REPORTS', variable: 'CODECOV_TOKEN')]) {
+  env.NPM_TOKEN = "${NPM_TOKEN}"
+  env.CODECOV_TOKEN = "${CODECOV_TOKEN}"
+  env.BUILD_DATE = new Date().format( 'yyyyMMddHHmmss' )
+  env.GIT_BRANCH_TAG = "${BRANCH_NAME}".replace("/", "-").toUpperCase()
+  env.ECR_URI = '111109246567.dkr.ecr.us-west-2.amazonaws.com'
+  env.ECR_REPO = 'web-reports'
+  env.IMAGE_TAG = "${env.ECR_REPO}".toUpperCase() + ".${GIT_BRANCH_TAG}.${env.BUILD_DATE}.${env.BUILD_NUMBER}"
+  env.TEST_TAG = 'web-reports-tests'
+  env.SERVICE = 'web-reports-service'
+  env.GIT_REPO = 'web-reports'
+  env.SERVICE_ID = '1s794'
+}
+
+pipeline {
+  agent {
+    dockerfile {
+      filename 'build.Dockerfile'
+      label 'swarm'
+    }
+  }
+
+  stages {
+    stage('TEST BUILD') {
+      steps {
+        script {
+          sh 'aws ecr get-login --no-include-email --region=us-west-2 | sh'
+          sh "docker build --build-arg NPM_TOKEN=${NPM_TOKEN} --build-arg NODE_ENV=development --pull -t ${TEST_TAG}:${BUILD_DATE} ."
+        }
+      }
+    }
+
+    stage('TEST') {
+      options {
+        timeout(time: 10, unit: 'MINUTES')
+      }
+
+      steps {
+        parallel (
+          'LINT': {
+              sh "docker run -e NPM_TOKEN=${NPM_TOKEN} --rm ${TEST_TAG}:${BUILD_DATE} yarn lint"
+          },
+          'TEST': {
+              sh "docker run -e NPM_TOKEN=${NPM_TOKEN} --rm ${TEST_TAG}:${BUILD_DATE} /bin/bash -c \"yarn test:coverage --ci --forceExit --detectOpenHandles --runInBand && curl -s https://codecov.io/bash | bash -s - -b ${IMAGE_TAG} -B ${GIT_BRANCH} -C ${GIT_COMMIT} -t ${CODECOV_TOKEN} \""
+          }
+        )
+      }
+    }
+
+    stage('PROD BUILD') {
+      steps {
+        script {
+          if (BRANCH_NAME == 'master') {
+            sh 'aws ecr get-login --no-include-email --region=us-west-2 | sh'
+            sh "docker build --build-arg NPM_TOKEN=${NPM_TOKEN} --build-arg NODE_ENV=production --pull -t ${ECR_REPO}:${IMAGE_TAG} ."
+          }
+        }
+      }
+    }
+
+    stage('PUBLISH') {
+      steps {
+        script {
+          if (BRANCH_NAME == 'master') {
+            sh "docker tag ${ECR_REPO}:${IMAGE_TAG} ${ECR_URI}/${ECR_REPO}:${IMAGE_TAG}"
+            sh "docker push ${ECR_URI}/${ECR_REPO}:${IMAGE_TAG}"
+          }
+        }
+      }
+    }
+
+    stage('DEPLOY') {
+      steps {
+        script {
+          if (BRANCH_NAME == 'master') {
+            bp = new buildpipeline()
+            bp.git_tag(GIT_REPO,  IMAGE_TAG)
+
+            wrap([$class: 'VaultBuildWrapper', vaultSecrets: [
+              [$class: 'VaultSecret', path: 'secret/tools/jenkins/elastalert', secretValues: [
+                [$class: 'VaultSecretValue', envVar: 'RANCHER_ACCESS_KEY', vaultKey: 'RANCHER_ACCESS_KEY'],
+                [$class: 'VaultSecretValue', envVar: 'RANCHER_SECRET_KEY', vaultKey: 'RANCHER_SECRET_KEY']]
+              ]
+            ]]) {
+              sh "./deploy.py https://rancher.autogravity.com 1a141 ${SERVICE_ID} '${ECR_URI}/${ECR_REPO}:${IMAGE_TAG}'"
+            }
+          }
+        }
+      }
+    }
+  }
+}

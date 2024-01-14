@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        NODE_ENV: production
+        NPM_TOKEN: $NPM_TOKEN
+    volumes:
+      - .:/project
+    ports:
+      - "9000:9000"
+    links:
+      - mongo
+    env_file:
+      - '.env'
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"

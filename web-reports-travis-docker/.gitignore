@@ -1,0 +1,29 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+/.next
+/bundles
+
+# editors
+.vscode
+
+# environment
+.env*
+!.env.test
+.profile
+
+# misc
+.DS_Store
+.env
+combined.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+errors.log
+/insertDealers.js
