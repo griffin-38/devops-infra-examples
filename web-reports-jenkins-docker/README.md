@@ -1,8 +1,13 @@
-# Web Reports
-
+# Automation Tests -  Web Reports - Jenkins and Docker
 Provides an easy and scalable way to store and visualize internal reports.
-Based on [next.js](https://nextjs.org/) with [express server](https://expressjs.com/). Stores data in [mongoDB](https://www.mongodb.com/).
-- Used a sample automation-test-suite for validating vehicle inventory for a dealer for this example
+
+## Key Features
+
+- CI/CD Integration: Utilizes [Jenkins and Docker](https://www.jenkins.io/solutions/docker/) to seamlessly incorporate automated tests into our CI/CD pipeline.
+- Enhanced Team Efficiency: Accelerates team automation tasks by streamlining the testing process
+- OneLogin SSO for authentication
+- Based on [next.js](https://nextjs.org/) with [express server](https://expressjs.com/). 
+- Stores data in [mongoDB](https://www.mongodb.com/).
 
 ## Documentation
 
