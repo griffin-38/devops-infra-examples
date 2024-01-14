@@ -1,0 +1,35 @@
+{
+    "name": "terraform-ansible-eks",
+    "version": "1.0.0",
+    "description": "Terraform and Ansible integration for AWS EKS",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "terraform",
+        "ansible",
+        "eks",
+        "aws"
+    ],
+    "author": "Omar Miskinyar",
+    "license": "MIT",
+    "devDependencies": {
+        "ansible": "^2.10.10"
+    },
+    "builders": [{
+        "type": "amazon-ebs",
+        "ssh_pty": true,
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "region": "us-west-2",
+        "instance_type": "t2.medium",
+        "source_ami": "ami-28e07e50",
+        "ssh_username": "ec2-user",
+        "ami_name": "Ansible w/Packer Demo - v0.1"
+    }],
+    "provisioners": [{
+        "type": "ansible",
+        "playbook_file": "../ansible/httpd.yml"
+    }]
+}

@@ -1,0 +1,8 @@
+# Replace with your Ansible setup tasks for EKS
+---
+- name: EKS Setup
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Your Ansible task here
+      # Your Ansible task details
