@@ -2,6 +2,7 @@
 
 Provides an easy and scalable way to store and visualize internal reports.
 Based on [next.js](https://nextjs.org/) with [express server](https://expressjs.com/). Stores data in [mongoDB](https://www.mongodb.com/).
+- Used a sample automation-test-suite for validating vehicle inventory for a dealer for this example
 
 ## Documentation
 
@@ -15,7 +16,7 @@ See [this Confluence doc](https://autogravity.atlassian.net/wiki/spaces/EN/pages
 
 ### Authentication
 
-The application is using OneLogin SSO for authentication. When running locally, it connects to [web-reports local](https://autogravity-dev.onelogin.com/apps/955660/edit). You may need to request access to https://autogravity-dev.onelogin.com.
+The application uses OneLogin SSO for authentication. When running locally, it connects to [web-reports local](https://autogravity-dev.onelogin.com/apps/955660/edit). You may need to request access to https://autogravity-dev.onelogin.com.
 
 ## How to use
 
