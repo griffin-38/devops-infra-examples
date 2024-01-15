@@ -13,10 +13,10 @@ Make sure to replace placeholders like [your_db_host], [your_db_port], [your_db_
 
 
 ****
-## Execute Script
 
+## Pre-Conditions
 
-Follow these steps to execute the script:
+Follow these steps prior to executing the script:
 
 1. Create and add a file in your directory: [dbclean]
 2. Passwords for psql connections
@@ -24,10 +24,10 @@ Follow these steps to execute the script:
 3. Update bash_profile with the path to the scripts folder:
    - Run `emacs .bash_profile` then `source .bash_profile`
 4. Add path: `export SCRIPT_HOME=/Users/[user.name]/dbclean`
-5. To execute the cleanup process in the [cleanup_db.sh] file without manual confirmation, particularly in CI/CD environments where automation is preferred, you may consider removing the user input prompt if it's not needed.
 
 
-****
+## Execute Script
+
 ```bash
 # Run the following commands in your terminal to make the scripts executable:
 
@@ -43,7 +43,25 @@ chmod +x functions_db.sh
 # When you run this script with a command like [ENV=your_db_environment] ./cleanup_db.sh", it will clean the specified database environment, and then wait for user input before exiting.
 
 
+## Travis CI Integration
 
+This repository includes integration with Travis CI to automate the execution of the database cleanup script. The Travis CI configuration is defined in the [.travis.yml](.travis.yml) file. The script is triggered during specific stages of the CI/CD pipeline.
+
+### Steps to Execute the Cleanup Script in Travis CI
+
+Follow these steps to understand and execute the cleanup script within Travis CI:
+
+1. **Script Details**: The main cleanup script is [**cleanup_db.sh**], and it resets a specified database environment using a function from an external file [**functions_db.sh**]. Make sure to customize the script based on your specific database and requirements.
+
+2. **Remove Prompt**: To execute the cleanup process in the [cleanup_db.sh] file without 'manual confirmation', particularly in CI/CD environments where automation is preferred, you may consider removing the user input prompt if its not needed.
+
+3. **Travis CI Configuration**: The [.travis.yml](.travis.yml) file in the repository defines the Travis CI configuration. It includes stages and jobs that specify when and how the cleanup script should be executed. Refer to the file for a detailed understanding.
+
+4. **Execute Script in Travis CI**: To execute the cleanup process in Travis CI, the script is run with a specified environment variable. For example:
+
+   ```bash
+   [ENV=your_db_environment] ./cleanup_db.sh
+   [ENV=waterfront_qa7_db] ./cleanup_db.sh
 
 
 
