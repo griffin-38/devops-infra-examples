@@ -1,12 +1,24 @@
-# main.tf
 provider "aws" {
-  region = "us-west-2"  # Set your desired AWS region
+  region = "us-west-2" # Change to your desired region
 }
 
-module "eks_cluster" {
+module "eks" {
   source = "./modules/eks"
+  cluster_name    = "my-eks-cluster"
+  subnets         = ["subnet-xxxxxxxxxxxxxxx", "subnet-yyyyyyyyyyyyyyy", "subnet-zzzzzzzzzzzzzzzz"] # Add your subnet IDs
+  vpc_id          = "vpc-xxxxxxxxxxxxxxxxx" # Add your VPC ID
 
-  cluster_name = "my-eks-cluster"
-  subnets      = ["subnet-xxxxxxxxxxxxxxxxx", "subnet-yyyyyyyyyyyyyyyyy"]  # Replace with your subnet IDs
-  vpc_id       = "vpc-xxxxxxxxxxxxxxxxx"  # Replace with your VPC ID
+  # Other module inputs...
+  node_groups = {
+    eks_nodes = {
+      desired_capacity = 2
+      max_capacity     = 3
+      min_capacity     = 1
+
+      key_name = "eks-key"
+    }
+  }
 }
+
+# Additional configurations and resources as needed
+

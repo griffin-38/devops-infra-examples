@@ -65,7 +65,9 @@ main.tf: This is the main Terraform file that uses the eks module to create the 
 
 **terraform_aws/main.tf**: Set desired AWS region, subnet and vpc ids
 
-**terraform_aws/outputs.tf**: This file defines the output values that you want to display after running Terraform.
+**terraform_aws/outputs.tf**: This file defines the output values that you want to display after running Terraform. 
+- This file will allow you to capture and use various pieces of information about your EKS cluster after it has been provisioned. 
+- Adjust the outputs according to your needs and what information you may require for subsequent steps or external applications.
 
 **terraform_aws/variables.tf**: This file defines the input variables used in your Terraform configuration.
 - cluster_name: Name for the EKS cluster.
