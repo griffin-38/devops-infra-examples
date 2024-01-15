@@ -1,4 +1,4 @@
-# Infrastructure Examples Repository
+# DevOps & Infrastructure Examples Repository
 This repository serves as a showcase of my experience working with various DevTools related to automation, DevOps, and infrastructure. It includes implementations of CI/CD pipelines and other infrastructure-related examples.
 
 ### Overview
