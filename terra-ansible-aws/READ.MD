@@ -61,7 +61,7 @@ main.tf: This is the main Terraform file that uses the eks module to create the 
 
 - **modules/eks/main.tf**: This folder contains the Terraform module for creating the EKS cluster. It includes variables, providers, and resources needed for EKS.
 
-**packer/package.json**: Feel free to customize the contents based on your project's specific needs and dependencies. Ensure to replace placeholder values in the package.json.
+**packer/packer.json**:  JSON files that configure the various components of Packer in order to create one or more machine images. Feel free to customize the contents based on your project's specific needs and dependencies. Ensure to replace placeholder values in the packer.json.
 
 **terraform_aws/main.tf**: Set desired AWS region, subnet and vpc ids
 
