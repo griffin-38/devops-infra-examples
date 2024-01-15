@@ -1,0 +1,43 @@
+language: node_js
+
+dist: trusty
+sudo: false
+
+node_js:
+  - "8.9.4"
+
+install:
+  - yarn
+
+before_script:
+  - jdk_switcher use oraclejdk8
+  - npm run lint
+
+stages: 
+  - Database Cleanup  # New stage for Database Cleanup
+  - SBA Chrome Regression Suite 1 
+  - SBA Chrome Regression Suite 2 
+  - SBA Chrome Scenario Tests 3
+  - Agent Tool Kit Endpoint Regression Suite 4 
+
+jobs:
+  include:
+    # Database Cleanup job
+    - stage: Database Cleanup
+      script: ./cleanup_db.sh  # Replace with the actual script name and path: '[ENV=your_db_environment] ./cleanup_db.sh'
+    # Rest of your existing jobs...
+    - stage: SBA Chrome Regression Suite 1 
+      env: SBA='Refinance Joint Texas QA4' 
+      script: nightwatch tests/7_travis/travisSuite/qa8/04travisRefiJoint.js --env qa4 -c nightwatch.conf.TRAVIS.js
+
+    # ... rest of the jobs ...
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+notifications:
+  email:
+    recipients:
+      - distribution.qaengineering@SBA.com
+    on_success: always
