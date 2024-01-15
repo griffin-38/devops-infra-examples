@@ -1,0 +1,25 @@
+- hosts: webservers
+  become: yes
+  become_user: root
+
+  vars:
+    helloworld: Who is your Poppa!
+
+  tasks:
+    - name: Install the httpd package
+      yum: 
+        name: httpd
+        state: present
+
+    - name: Start the httpd service
+      service: 
+        name: httpd 
+        state: started
+        enabled: yes
+
+    - name: Configure Web Page
+      template:
+        src: ../files/index.j2
+        dest: /var/www/html/index.html
+
+
