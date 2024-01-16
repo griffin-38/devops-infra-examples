@@ -22,10 +22,22 @@
         "instance_type": "t2.medium",
         "source_ami": "ami-28e07e50",
         "ssh_username": "ec2-user",
-        "ami_name": "Ansible w/Packer Demo - v0.1"
+        "ami_name": "Terraform and Ansible EKS Cluster - v1.0.0"
     }],
     "provisioners": [{
-        "type": "ansible",
-        "playbook_file": "../ansible/configure_web_server.yml"
-    }]
+            "type": "ansible",
+            "playbook_file": "../ansible/playbooks/configure_web_server.yml"
+        },
+        {
+            "type": "local-exec",
+            "command": "echo 'Hello World'"
+        },
+        {
+            "type": "remote-exec",
+            "inline": [
+                "echo 'Hello World'",
+                "ansible-playbook -i 'localhost,' --private-key ${var.private_key_path} ../ansible/playbooks/configure_web_server.yml"
+            ]
+        }
+    ]
 }

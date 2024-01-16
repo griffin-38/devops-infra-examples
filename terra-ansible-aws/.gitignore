@@ -1,17 +1,12 @@
-#  Local .terraform directories#
-######################
-.terraform/
+#  Local .terraform directories
+**/.terraform/*
 
-# .tfstate files#
-######################
+# .tfstate files
 *.tfstate
-*.tfstate.backup
+*.tfstate.*
 
-# .tfvars files#
-######################
-terraform.tfvars
+# .tfvars files
+*.tfvars
 
-# OS generated files #
-######################
-node_modules/
-files
+*.retry
+playbooks/*.swp

@@ -1,0 +1,18 @@
+
+- name: Configure EC2
+  hosts: localhost
+  gather_facts: false
+  
+  # Your EC2 task details
+  tasks:      
+    - name: Launch EC2 instance
+      ec2:
+        key_name: my-key-pair
+        image: ami-0123456789abcdef0
+        instance_type: t2.micro
+        state: present
+      register: ec2_result
+
+    - name: Print EC2 instance info
+      debug:
+        var: ec2_result

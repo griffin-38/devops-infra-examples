@@ -1,0 +1,11 @@
+- name: Container Orchestration
+  hosts: localhost
+  gather_facts: false
+  
+  # Your EC2 task details
+  tasks:
+    - name: Deploy Kubernetes pods
+      k8s:
+        state: present
+        definition: "{{ lookup('file', 'path/to/kubernetes/deployment.yml') }}"
+

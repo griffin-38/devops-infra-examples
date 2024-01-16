@@ -1,0 +1,19 @@
+- name: Configure S3
+  hosts: localhost
+  gather_facts: false
+  
+  # Your S3 task details
+  tasks:
+    - name: Create S3 bucket
+      s3_bucket:
+        name: my-awesome-bucket
+        state: present
+        acl: private
+      register: s3_result
+
+    - name: Print S3 bucket info
+      debug:
+        var: s3_result
+
+
+

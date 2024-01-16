@@ -1,8 +1,0 @@
----
-- hosts: localhost
-
-  tasks:
-
-  terraform:
-    project_path: terraform/
-    state: present

@@ -19,7 +19,8 @@
 
     - name: Configure Web Page
       template:
-        src: ../files/index.j2
+        src: ../ansible/files/index.j2
         dest: /var/www/html/index.html
+
 
 
