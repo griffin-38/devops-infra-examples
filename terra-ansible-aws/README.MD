@@ -6,15 +6,18 @@ This repository provides code examples demonstrating the integration of Terrafor
 
 Ensure you have the following tools installed before using this repository:
 
-- Terraform: Used for defining and provisioning infrastructure as code.
-- Ansible: Used for configuration management and application deployment.
+- Install [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli): Used for defining and provisioning infrastructure as code.
 
-HashiCorp's Packer tool:
+- Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html): Used for configuration management and application deployment.
+
+- Install [HashiCorps Packer Tool](https://developer.hashicorp.com/packer/install):
   
+  - Packer lets you create identical machine images for multiple platforms from a single source configuration.
   - Packer is often used to create machine images for various cloud providers, including AWS. 
   - If your project involves the need to create custom Amazon Machine Images (AMIs) or other image formats for different cloud providers, Packer can be valuable. 
   - It allows you to define and automate the process of building images with pre-configured software, dependencies, and settings.
   - If your project does not have a requirement for custom images or if AWS provides pre-configured images that meet your needs, you might choose not to use Packer.
+  
 
 ### Configuration File Syntax:
 
