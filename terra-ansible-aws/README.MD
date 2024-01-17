@@ -5,7 +5,7 @@ This repository provides code examples demonstrating the integration of Terrafor
 ****
 ## Prerequisites
 
-**Install [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)**: `Please make sure to review the documentation`. Terraform is used for defining and provisioning infrastructure as code.
+**Install [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)**: Terraform is used for defining and provisioning infrastructure as code, `Please make sure to review the documentation`.
 
 [Homebrew](https://formulae.brew.sh/formula/terraform)
 ````
@@ -13,7 +13,7 @@ $ brew install terraform
 $ brew
 ````
 
-**Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)**: `Please make sure to review the documentation`. Ansible is used for configuration management and application deployment.
+**Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)**: Ansible is used for configuration management and application deployment, `Please make sure to review the documentation`.
 
 [Homebrew](https://formulae.brew.sh/formula/ansible)
 ````
@@ -31,14 +31,13 @@ Harness HashiCorp's Packer tool to effortlessly create machine images on your pr
 - It automates building images with predefined software and settings.
 - Consider skipping Packer if you don't need custom images or AWS offers suitable pre-configured ones.
 
-****
 # Getting Started
 
 1. Clone this repository.
  - Ensure you have the following tools installed before using this repository.
 2. Customize the Terraform variables in `terraform.tfvars`.
 3. Run `terraform init`, `terraform plan`, followed by `terraform apply`.
-4. ...
+ - [Terraform Troubleshooting](https://developer.hashicorp.com/terraform/tutorials/configuration-language/troubleshooting-workflow)
 
 ## Running Terraform with Ansible
 
@@ -79,7 +78,6 @@ provisioner "remote-exec" {
 
 If your Ansible playbooks need to be executed on a remote host, you might need this configuration.
 
-****
 # Directory Structure
 
 `ansible/files`: Configures an Apache HTTP Server, creating a basic web page. The playbook assumes you have a Jinja2 (.j2) template file.
@@ -125,7 +123,7 @@ If your Ansible playbooks need to be executed on a remote host, you might need t
 - Feel free to customize these examples according to your actual configurations and requirements.
 - The provided tasks are simplified and may need adjustments based on your specific setup.
 
-****
+# Understanding Configuration File Syntax and Packer Usage
 ## Configuration File Syntax
 Understanding the syntax of the configuration files used in this repository is essential.
 
@@ -138,5 +136,7 @@ Understanding the syntax of the configuration files used in this repository is e
 `Automation Benefits`: If your project requires automated building of custom Amazon Machine Images (AMIs) or other formats for different cloud providers, Packer could be valuable.
 `Alternative Approaches`: If you have a different method for managing machine images or creating custom images isn't part of your infrastructure setup, Packer may not be necessary for your use case.
 `Project Evaluation`: Assess your specific project requirements to determine if Packer aligns with your goals for image creation and automation. If not, it may not be needed in this repository.
+
+****
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
