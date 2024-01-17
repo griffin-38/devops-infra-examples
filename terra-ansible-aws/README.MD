@@ -1,15 +1,33 @@
 # Infrastructure Automation for AWS with Terraform and Ansible
 
-This repository provides code examples demonstrating the integration of Terraform and Ansible for setting up an AWS Elastic Kubernetes Service (EKS) cluster. It orchestrates resource deployment using modules designed for Amazon EKS, EC2, S3, and Lambda.=
+This repository provides code examples demonstrating the integration of Terraform and Ansible for setting up an AWS Elastic Kubernetes Service (EKS) cluster. It orchestrates resource deployment using modules designed for Amazon EKS, EC2, S3, and Lambda.
+
+****
 ## Prerequisites
 
-- **Install [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)**: Used for defining and provisioning infrastructure as code.
+**Install [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)**: `Please make sure to review the documentation`. Terraform is used for defining and provisioning infrastructure as code.
 
-- **Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)**: Used for configuration management and application deployment.
+````
+$ brew install terraform
+$ brew
+````
+
+**Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)**: `Please make sure to review the documentation`. Ansible is used for configuration management and application deployment.
+
+````
+$ brew install ansible
+$ ansible -version
+
+````
+````   
+$ sudo apt-add-repository ppa:ansible/ansible
+# Press ENTER to accept the PPA addition.
+$ sudo apt-get update
+$ sudo apt-get install ansible
+````
 
 ### Building System Images with Packer and Ansible
-
-- Harness HashiCorp's Packer tool to effortlessly create machine images on your preferred cloud or virtualization platform using your existing Ansible playbooks. 
+Harness HashiCorp's Packer tool to effortlessly create machine images on your preferred cloud or virtualization platform using your existing Ansible playbooks. 
 - Packer configuration is defined in a JSON file and executed from the command line.
   - **Install [HashiCorps Packer Tool](https://developer.hashicorp.com/packer/install)**:
   - Getting Started: [Packer](https://developer.hashicorp.com/packer/tutorials/docker-get-started/get-started-install-cli)
@@ -18,23 +36,24 @@ This repository provides code examples demonstrating the integration of Terrafor
 - It automates building images with predefined software and settings.
 - Consider skipping Packer if you don't need custom images or AWS offers suitable pre-configured ones.
 
-## Getting Started
+****
+# Getting Started
 
 1. Clone this repository.
  - Ensure you have the following tools installed before using this repository.
 2. Customize the Terraform variables in `terraform.tfvars`.
-3. Install Ansible:
-   ```shell
-   $ sudo apt-add-repository ppa:ansible/ansible
-   # Press ENTER to accept the PPA addition.
-   $ sudo apt-get update
-   $ sudo apt-get install ansible
-4. Run `terraform init`, `terraform plan`, followed by `terraform apply`.
-5. ...
-  
-# Running Ansible from Terraform
+3. Run `terraform init`, `terraform plan`, followed by `terraform apply`.
+4. ...
 
-## Using local_exec
+## Running Terraform with Ansible
+
+Ansible has a Terraform module that can trigger Terraform deployments and plans.
+
+- You can also pull resource Utilize Ansible's Terraform module to seamlessly trigger Terraform deployments and plans.
+- Additionally, you have the capability to retrieve resource information back into Ansible.
+- For more details, refer to the [Ansible Documentation](https://docs.ansible.com/ansible/latest/scenario_guides/vmware_rest_scenarios/collect_information.html).
+  
+### Using local_exec
 
 This section typically involves executing Ansible playbooks on the same machine where terraform apply is run.
 
@@ -47,8 +66,7 @@ provisioner "local-exec" {
 ````
 
 If you have Ansible playbooks that need to be executed on the local machine where Terraform is being applied, you might need this section. However, if your Ansible playbooks are intended to run on a remote host or a different machine, this section may not be necessary.
-
-## Utilizing remote_exec
+### Utilizing remote_exec
 
 This section involves running Ansible on a remote host. It typically includes copying Ansible playbooks to the remote host, installing Ansible there, and then executing the playbooks. 
 
@@ -66,24 +84,7 @@ provisioner "remote-exec" {
 
 If your Ansible playbooks need to be executed on a remote host, you might need this configuration.
 
-## Running Terraform with Ansible
-
-Ansible has a Terraform module that can trigger Terraform deployments and plans.
-
-- You can also pull resource Utilize Ansible's Terraform module to seamlessly trigger Terraform deployments and plans.
-- Additionally, you have the capability to retrieve resource information back into Ansible.
-- For more details, refer to the [Ansible Documentation](https://docs.ansible.com/ansible/latest/scenario_guides/vmware_rest_scenarios/collect_information.html).
-
-## Packer Usage
-
-`Project Needs`: Decide based on your project needs whether Packer is essential for creating custom machine images.
-
-`Automation Benefits`: If your project requires automated building of custom Amazon Machine Images (AMIs) or other formats for different cloud providers, Packer could be valuable.
-
-`Alternative Approaches`: If you have a different method for managing machine images or creating custom images isn't part of your infrastructure setup, Packer may not be necessary for your use case.
-
-`Project Evaluation`: Assess your specific project requirements to determine if Packer aligns with your goals for image creation and automation. If not, it may not be needed in this repository.
-
+****
 # Directory Structure
 
 `ansible/files`: Configures an Apache HTTP Server, creating a basic web page. The playbook assumes you have a Jinja2 (.j2) template file.
@@ -130,14 +131,17 @@ Ansible has a Terraform module that can trigger Terraform deployments and plans.
 - The provided tasks are simplified and may need adjustments based on your specific setup.
 
 ****
-
 ## Configuration File Syntax
-
 Understanding the syntax of the configuration files used in this repository is essential.
 
 - **YAML:** A human-readable data serialization format commonly used for configuration files and data exchange between languages with different data structures.
 - **Terraform (.tf) Files:** Terraform uses HashiCorp Configuration Language (HCL) for its configuration files. HCL is designed to be easy to read and write for both humans and machines.
 - Both YAML and HCL follow specific syntax rules, indentation, and key-value pairs to define configurations. YAML is often used for Ansible playbooks, while Terraform uses HCL for defining infrastructure resources and their configurations.
+## Packer Usage
 
+`Project Needs`: Decide based on your project needs whether Packer is essential for creating custom machine images.
+`Automation Benefits`: If your project requires automated building of custom Amazon Machine Images (AMIs) or other formats for different cloud providers, Packer could be valuable.
+`Alternative Approaches`: If you have a different method for managing machine images or creating custom images isn't part of your infrastructure setup, Packer may not be necessary for your use case.
+`Project Evaluation`: Assess your specific project requirements to determine if Packer aligns with your goals for image creation and automation. If not, it may not be needed in this repository.
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
