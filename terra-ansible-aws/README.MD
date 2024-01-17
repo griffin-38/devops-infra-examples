@@ -7,6 +7,7 @@ This repository provides code examples demonstrating the integration of Terrafor
 
 **Install [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)**: `Please make sure to review the documentation`. Terraform is used for defining and provisioning infrastructure as code.
 
+[Homebrew](https://formulae.brew.sh/formula/terraform)
 ````
 $ brew install terraform
 $ brew
@@ -14,18 +15,12 @@ $ brew
 
 **Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)**: `Please make sure to review the documentation`. Ansible is used for configuration management and application deployment.
 
+[Homebrew](https://formulae.brew.sh/formula/ansible)
 ````
 $ brew install ansible
 $ ansible -version
 
 ````
-````   
-$ sudo apt-add-repository ppa:ansible/ansible
-# Press ENTER to accept the PPA addition.
-$ sudo apt-get update
-$ sudo apt-get install ansible
-````
-
 ### Building System Images with Packer and Ansible
 Harness HashiCorp's Packer tool to effortlessly create machine images on your preferred cloud or virtualization platform using your existing Ansible playbooks. 
 - Packer configuration is defined in a JSON file and executed from the command line.
