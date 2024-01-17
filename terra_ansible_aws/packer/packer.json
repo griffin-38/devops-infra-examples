@@ -6,6 +6,9 @@
         "terraform",
         "ansible",
         "eks",
+        "ecs",
+        "s3",
+        "lambdas",
         "aws"
     ],
     "author": "Omar Miskinyar",

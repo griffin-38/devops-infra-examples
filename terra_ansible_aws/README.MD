@@ -16,10 +16,12 @@ $ terraform -v
 
 **Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)**: Ansible is used for configuration management and application deployment, `Please make sure to review the documentation`.
 
-[Homebrew](https://formulae.brew.sh/formula/ansible)
+[Ansible with pip](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 ````
-$ brew install ansible
-$ ansible --version
+$ git clone https://github.com/ansible/ansible.git
+$ cd ansible
+$ pip3 install -r requirements.txt
+$ python3 setup.py install
 
 ````
 ### Building System Images with Packer and Ansible
