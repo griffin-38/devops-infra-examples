@@ -10,7 +10,8 @@ This repository provides code examples demonstrating the integration of Terrafor
 [Homebrew](https://formulae.brew.sh/formula/terraform)
 ````
 $ brew install terraform
-$ brew
+$ terraform -v
+
 ````
 
 **Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)**: Ansible is used for configuration management and application deployment, `Please make sure to review the documentation`.
@@ -18,7 +19,7 @@ $ brew
 [Homebrew](https://formulae.brew.sh/formula/ansible)
 ````
 $ brew install ansible
-$ ansible -version
+$ ansible --version
 
 ````
 ### Building System Images with Packer and Ansible
@@ -80,7 +81,7 @@ If your Ansible playbooks need to be executed on a remote host, you might need t
 
 # Directory Structure
 
-`ansible/files`: Configures an Apache HTTP Server, creating a basic web page. The playbook assumes you have a Jinja2 (.j2) template file.
+`ansible/files`: Configures an Apache HTTP Server, creating a basic web page. The playbook assumes you have a Jinja2 (.j2) - template file (index.j2).
 
 `ansible/playbooks/configure_web_server.yml`: Ansible playbook for EKS setup. Customize the Ansible playbook (eks-setup.yml) based on your specific setup tasks for EKS.
 

@@ -117,7 +117,6 @@ variable "worker_node_instance_type" {
   default     = "t2.micro"
 }
 
-
 variable "worker_node_desired_capacity" {
   description = "Desired capacity for worker nodes Auto Scaling Group"
   type        = number
